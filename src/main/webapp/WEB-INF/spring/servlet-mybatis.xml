@@ -26,19 +26,18 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-	<!-- <bean id="sqlSessionFactory"
+	<bean id="sqlSessionFactory"
 		class="project.common.RefreshableSqlSessionFactoryBean"> 
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
 			value="classpath:mybatis/model/modelConfig.xml" />
-		<property name="mapperLocations"
-			value="classpath:mybatis/mappers/**/*.xml" />
-	</bean> -->
+		<property name="mapperLocations" value="classpath*:mybatis/mappers/**/*.xml" />
+	</bean>
 
-	<!-- <bean id="sqlSession"
+	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
-	</bean> -->
+	</bean>
 
 	<!-- 
 	<bean id="transactionManager"
@@ -51,8 +50,5 @@
     </bean>
      
    <tx:annotation-driven transaction-manager="txManager" /> 
-
-	<!-- <bean id="memberDAO" class="com.spring.member.dao.MemberDAOImpl"> <property 
-		name="sqlSession" ref="sqlSession"></property> </bean> -->
 
 </beans>

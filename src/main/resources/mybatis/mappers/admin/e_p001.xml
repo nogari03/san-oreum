@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin.mapper.e_p001">
+	<resultMap id="e_p001Result01" type="e_p001VO">
+		<result property="userAddress" column="userAddress"  />
+		<result property="userEmail" column="userEmail" />
+		<result property="userId" column="userId" />
+		<result property="userJoindate" column="userJoindate" />
+		<result property="userName" column="userName" />
+		<result property="userNum" column="userNum" />
+		<result property="userPhone" column="userPhone" />
+		<result property="userPwd" column="userPwd" />
+		<result property="userSex" column="userSex" />
+		<result property="userStatus" column="userStatus" />
+		<result property="userType" column="userType" />
+		<result property="userModdate" column="userModdate" />
+	</resultMap>
+	
+	<!-- 회원등록 -->
+ 	<insert id="insertUsers" parameterType="e_p001VO">
+		<selectKey resultType="int" keyProperty="userNum" order="BEFORE">
+		<![CDATA[
+			SELECT  nvl(max(userNum), 0) + 1 from USERS	
+		]]>
+		</selectKey>
+		<![CDATA[
+		INSERT INTO USERS(userNum, userId , userPwd, userName, userSex, userPhone, userAddress, userEmail, userType, userStatus, userJoindate)
+		VALUES (#{userNum}, #{userId}, #{userPwd}, #{userName}, #{userSex}, #{userPhone}, #{userAddress}, #{userEmail}, 100, 10, systimestamp)
+		]]>
+	</insert>  
+	
+	<!-- 회원 조건별 검색 -->
+	<select id="selectUser" resultMap="e_p001Result01" parameterType="java.util.Map">
+		 <![CDATA[
+         select userNum, userId, userPwd, userName, userSex, userPhone, userAddress, userEmail, userType, userStatus, userJoindate, userModdate
+         from   USERS	
+      	]]>
+    	<choose>
+    		<when test="searchOption=='userNum'">
+    		where  userNum =userNum
+    		</when>
+    		<when test="searchOption!='userNum'">
+    		where  ${searchOption} like '%'||#{key_word}||'%'
+    		</when>
+    	</choose>
+	</select>
+	
+	<!-- 회원 삭제 -->
+	<delete id="deleteUser"  parameterType="int">
+	<![CDATA[
+	   delete from  USERS
+	   where
+	   userId=#{userId}
+	]]>      
+  </delete>
+  
+  <!--수정전 회원정보 출력-->
+  	<select id="selectUpdateUserList" resultMap="e_p001Result01" parameterType="java.util.Map">
+		 <![CDATA[
+         select userNum, userId, userPwd, userName, userSex, userPhone, userAddress, userEmail, userType, userStatus, userJoindate, userModdate
+         from   USERS	
+         where  userNum like '%'||#{userNum}||'%'
+      	]]>
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	 <update id="updateUser" parameterType="e_p001VO">
+	  <![CDATA[
+		UPDATE USERS
+		SET userName = #{userName},
+			userSex = #{userSex},
+			userPhone = #{userPhone},
+			userAddress = #{userAddress},
+			userEmail = #{userEmail},
+			userStatus = #{userStatus},
+			userModdate = systimestamp
+		WHERE userId = #{userId}
+		 ]]>
+	</update>
+	
+</mapper>
