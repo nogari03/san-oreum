@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
@@ -49,6 +49,7 @@ z-index:9
 	width: 100px;
 	position: fixed;
 } 
+
 </style>
 <script>
 function selectCommentByPostNum(postNum){
@@ -920,7 +921,7 @@ $(document).on('click','.selectWaitingList',function (){
  						"<div class='col-lg-3 col-md-4 col-6' >" +
  						"<a id='oC' class='d-block mb-4 h-100' data-toggle='modal' >" +
  						" <img id='content"+ i +
- 						"' class='img-fluid img-thumbnail' src='/resources/img/"+ content +
+ 						"' class='img-fluid img-thumbnail' src='/upload/"+ content +
  					    "' alt='사진'></a></div>");
      			 }
 
@@ -1006,7 +1007,7 @@ $(document).on( 'click', 'a#oC img', function(e){
          	var postNum = $(this).data('postNum').replace(/\"/g, "");
          	var userNum = $(this).data('userNum').replace(/\"/g, "");
          	var createdAt = createdAts.slice(0,19);
-         	var src = "/resources/img/"+content2.replace(/\"/g, "");
+         	var src = "/upload/"+content2.replace(/\"/g, "");
          	 var modal = document.getElementById('originalContent');
          	 var modalImg = document.getElementById('OContent');
          	document.getElementById('nickName').innerHTML=nickName;
@@ -1334,8 +1335,12 @@ $(document).on( 'click', 'a#oC img', function(e){
     	    
     	 function appendSortList(response){
     	        for(var i=0;i<response.length;i++){
+    	        	
+    	        	var editorContent = response[i].DETAIL;
+					var covertContent = editorContent.replace(/(<([^>]+)>)/ig,"");
+    	        	
     	             var status1 = '<div class="pt-4 col-lg-12 col-sm-6" id="groupList">' + 
-    	            	           '<div class="card mb-6" style="max-width: 540px;" > '+
+    	            	           '<div class="card mb-6" style="max-width: 540px; " > '+
     	            	           '<a href="/group/'+response[i].GROUPNUM+'">' +
     	                           '<div class="row no-gutters">'+
     	                           '<div class="col-md-5">'+
@@ -1343,16 +1348,18 @@ $(document).on( 'click', 'a#oC img', function(e){
     	                           '<div class="col-md-7">'+
     	                           '<div class="card-body"><div class="row">'+
    	                               '<img src="/resources/img/' + response[i].CONTENT2 + '" class="rounded-circle" style="width:40px; height:40px; border:1px solid grey; margin-left: 20px">'+
-   	                               '<p style="width:55%; margin-top: 10px; margin-left: 5px">'+response[i].NICKNAME+'</p>'+
+   	                               '<p style="width:50%; margin-top: 10px; margin-left: 5px">'+response[i].NICKNAME+'</p>'+
    	                          	   '<svg style="margin-top: 10px; color: green;"width="1em" height="1.5em" viewBox="0 0 16 16" class="bi bi-triangle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
    	                          	   '<path fill-rule="evenodd" d="M7.022 1.566a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767L7.022 1.566z"/>'+
    	                          	   '</svg><p style=" margin-top: 8px;">'+response[i].MTNM+'</p>'+
-       	                           '</div><div class="col-10 p-0 pl-2 m-0">' +
-       	                           '<h6 class="card-title m-0" style="display:block;overflow:hidden;white-space:nowrap;text-overflow: ellipsis">'+
-       	                           '<span style="color: limegreen">['+response[i].STATUS+']</span> <br>' +response[i].NAME +'</h6>'+
-       	                           '<p class="card-text text-muted mb-1" style="display:block;overflow:hidden;white-space:nowrap;text-overflow: ellipsis">'+ response[i].DETAIL +'</p>'+
+       	                           '</div><div class="col-10 p-0 pl-2 m-1">' +
+       	                           '<h6 class="card-title m-0" style="width:250px; padding:2px 5px; display:block; overflow:hidden; white-space:nowrap; text-overflow: ellipsis">'+
+       	                           '<span style="color: limegreen; margin-bottom: 3px;">['+response[i].STATUS+']</span> <br>' +response[i].NAME +'</h6>'+
+       	                           '<p class="card-text mb-1" style="overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-wrap:break-word;line-height:1em;height:2em; width:16em;">'+ covertContent +'</p>'+
        	                           '<p class="m-0 text-muted">'+response[i].STARTDAY+' 출발</p>' +
        	                           '</div></div> </div> </div> </div>';
+       	                           
+       	                           
 
 
        	             var status2 = '<div class="pt-4 col-lg-12 col-sm-6" id="groupList">' + 
@@ -1371,7 +1378,7 @@ $(document).on( 'click', 'a#oC img', function(e){
     	                           '<div class="col-10 p-0 pl-2 m-0">' +
     	                           '<h6 class="card-title m-0" style="display:block;overflow:hidden;white-space:nowrap;text-overflow: ellipsis">'+
     	                           '<span style="color:red">['+response[i].STATUS+']</span> <br>' +response[i].NAME +'</h6>' +
-    	                           '<p class="card-text text-muted mb-1" style="display:block;overflow:hidden;white-space:nowrap;text-overflow: ellipsis">'+ response[i].DETAIL +'</p>' +
+    	                           '<p class="card-text  mb-1" style="display:block;overflow:hidden;white-space:nowrap;text-overflow: ellipsis">'+ response[i].DETAIL +'</p>' +
     	                           '<p class="m-0 text-muted">'+response[i].STARTDAY+' 출발</p>' +
     	                           '</div></div> </div> </div> </div>';
     	                            

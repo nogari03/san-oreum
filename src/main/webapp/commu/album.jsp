@@ -39,7 +39,7 @@
 			<!-- <div class="col-sm-7" style="width: 40rem; height: 60rem;" > -->
 			<img class="col-sm-7" id="OContent" src="">
 			<!--  </div> -->
-			<div class="card scroll" style="width: 30rem; height: 55rem; margin-left: 0px; margin-right: 8%;">
+			<div class="card scroll" style="width: 30rem; height: 48rem; margin-left: 0px; margin-right: 8%;">
 				<button type="button" class="close" id="ocClose" onclick="oCModalClose()" data-dismiss="modal" aria-label="Close" style="text-align: right; margin-right: 10px;">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -61,7 +61,7 @@
 
 					<div class="mt-3">
 						<h6 class="mt-2 pb-1">댓글</h6>
-						<div style="width: 28rem; height: 35rem; overflow:scroll;">
+						<div style="width: 28rem; height: 32rem; overflow:scroll;">
 							<div id="commentBoard" name="commentBoard" class="row"></div>
 						</div>
 					</div>
@@ -108,6 +108,7 @@
 				<form id="multiUpload" method="post" enctype="multipart/form-data">
 					<input type="file" id="pics" name="pics" multiple>
 				</form>
+				*한 번에 5개까지 업로드 가능합니다.
 			</div>
 			<div class="modal-footer">
 				<button type="button" id="closeUploadModal" class="btn btn-secondary" data-dismiss="modal">닫기</button>

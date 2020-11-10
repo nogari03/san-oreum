@@ -1,10 +1,12 @@
 package project.commu;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +32,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.Paging;
+import project.after.AfterController;
 import project.after.AfterService;
 import project.group.GroupService;
 import project.groupmedia.GroupMediaService;
@@ -59,6 +62,9 @@ public class CommuController {
 
 	@Autowired
 	private AfterService afterService;
+
+	
+	
 
 	@Transactional
 	@PostMapping(value = "/insert.do", produces = "application/json")
@@ -203,12 +209,11 @@ public class CommuController {
 			mmm.put("type", type);
 			commuService.updatePostType(mmm);
 		}
-
 			Matcher matcher = nonValidPattern.matcher((String)info.get("feedContent"));
 			while (matcher.find()) {
 				String src = matcher.group(1);
 				int i = matcher.group(1).lastIndexOf("/");
-				String fileName = src.substring(i + 1);
+				String fileName =src.substring(i + 1);
 				mm.put("groupNum", groupNum);
 				mm.put("storedFileName", fileName);
 				mm.put("userNum", userNum);
@@ -227,7 +232,6 @@ public class CommuController {
 	@PostMapping(value = "/updatePost.do")
 	public ModelAndView updatePost(@RequestParam Map<String, Object> info, HttpServletResponse response,
 			HttpServletRequest request, HttpSession httpSession) throws Exception {
-		System.out.println("커뮤 피드 작성하기: updatePost" +info);
 		String id = (String) httpSession.getAttribute(LOGIN);
 		int userNum = userService.selectUserNum(id);
 		Map m = new HashMap();
@@ -245,7 +249,6 @@ public class CommuController {
 		m.put("userNum", userNum);
 		m.put("type", type);
 		commuService.updatePost(m);
-		System.out.println("커뮤 피드 작성하기????: updatePost" +m);
 		ModelAndView mav = new ModelAndView("redirect:commuPageView.do?groupNum=" + groupNum);
 		return mav;
 	}

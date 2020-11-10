@@ -34,20 +34,20 @@ i {
 <body class="pt-5 mt-5" >
 <div id="groupForm-container" class="container" >
     <div id="groupForm">
-        <h1 class="p-3 col-12">산모임 만들기</h1>
+        <h1 class="p-3 col-12">산악회 만들기</h1>
         <pre></pre>
         <div class="mb-3 col-12">
-            <label for="name">산모임 이름</label>
+            <label for="name">산악회 이름</label>
             <input type="text" class="form-control" id="name">
         </div>
         <div class="mb-3 col-12">
-            <label for="detail">모임 소개</label>
+            <label for="detail">산악회 소개</label>
             <textarea class="form-control" rows="6" id="detail"></textarea><br>
         </div>
         <div class="mb-3 col-6">
-            <label for="area">모임 지역</label>
+            <label for="area">활동 지역</label>
             <select class="custom-select" id="area">
-   		    <option value="0" selected>모임 지역</option>
+   		    <option value="0" selected>활동 지역</option>
                     <option value="전체">전체</option>
                     <option value="서울">서울</option>
                     <option value="부산">부산</option>
@@ -143,24 +143,7 @@ i {
 <script src="//cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js"></script>
 <script type="text/javascript" src="../resources/js/view/group/searchMt.js"></script>
 <script>
-/*     function fileUploadAction() {
-        $('#uploadFile').trigger('click');
-    }
 
-    function setPreview(event){
-        for(var image of event.target.files) {
-            var reader = new FileReader();
-
-            reader.onload = function (event) {
-                var img = document.createElement("img");
-                img.setAttribute("src", event.target.result);
-                img.setAttribute("class","col-4")
-                document.querySelector("div.preview").appendChild(img);
-            };
-            reader.readAsDataURL(image);
-        }
-    }
- */
 
     $(document).ready(function () {
 

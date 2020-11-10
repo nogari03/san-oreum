@@ -93,7 +93,7 @@ public class CommuServiceImpl implements CommuService {
 	@Override
 	public void insertAlbum(int groupNum, List<MultipartFile> files, String path, Map<String, Object> m)
 			throws Exception {
-		List<Map> list = fileUtils.saveFile(groupNum, files, path);
+		List<Map> list = fileUtils.saveCommuAlbumFile(groupNum, files, path);
 		Map<String, Object> map = m;
 		for (Map mm : list) {
 			map.putAll(mm);
