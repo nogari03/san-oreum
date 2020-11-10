@@ -3,9 +3,9 @@
     
  <script type="text/javascript">
  //상단 헤더부분 알림 아이콘 실행
-/*   var timer = setInterval(function(){
+   var timer = setInterval(function(){
 	 count();
- }, 5000);   */
+ }, 5000);  
  
  //알림 카운트
  function count(){
