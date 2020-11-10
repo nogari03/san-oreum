@@ -195,7 +195,7 @@ function selectDay(str){
 	//결제 취소요청 상세보기 팝업
 	$(document).on("click", "#viewCancelList", function() {
 		var num = $(this).val();
-		window.open("viewCancelList.do?merchant_uid="+num, '취소요청상세보기','width=700px,height=800px,scrollbars=yes');
+		window.open("viewCancelList.do?merchant_uid="+num, '취소요청상세보기','width=741.6px,height=800px,scrollbars=yes');
 		
 	});
 	//박스 닫기

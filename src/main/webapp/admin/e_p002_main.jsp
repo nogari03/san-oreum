@@ -275,12 +275,12 @@ $(document).ready(function() {
 	
 	//상품 상세보기
 	function viewProd (optionNum, prodNum){
-		window.open('viewProdList.do?optionNum='+optionNum+'&prodNum='+prodNum, '상품상세정보','width=800px,height=800px,scrollbars=yes');
+		window.open('viewProdList.do?optionNum='+optionNum+'&prodNum='+prodNum, '상품상세정보','width=741.6px,height=800px,scrollbars=yes');
 	};
 	
 	//중고품 상세보기
 	function viewUsedList (prodNum, userNum){
-		window.open('viewUsedList.do?prodNum='+prodNum+'&userNum='+userNum, '중고품거래요청','width=800px,height=800px,scrollbars=yes');
+		window.open('viewUsedList.do?prodNum='+prodNum+'&userNum='+userNum, '중고품거래요청','width=741.6px,height=800px,scrollbars=yes');
 	};
 	
 
