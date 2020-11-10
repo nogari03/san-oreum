@@ -22,6 +22,8 @@ public interface ProfileService {
 	List<Map> selectFollowingList(String userId);
 
 	List<Map> selectFollowerList(String userId);
-	
+
+	List selectRecord(String userId);
+
 	Map<String, Object> selectFollowCnt(String userId);
 }

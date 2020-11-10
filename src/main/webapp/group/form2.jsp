@@ -48,9 +48,9 @@
         <div class="col-6 p-3">
             <label for="staffMax">출발 인원</label>
             <div class="staff form-inline">
-                <i id="decrease" class="fas fa-minus"></i>
+                <i id="decrease" class="fas fa-angle-left mr-2" style="font-size: 30px"></i>
                 <h2 id="staffMax" class="m-0">2</h2><h2 class="m-0">인 출발</h2>
-                <i id="increase"class="fas fa-plus" ></i>
+                <i id="increase" class="fas fa-angle-right ml-2" style="font-size: 30px"></i>
             </div>
         </div>
         <div class="m-3">
@@ -358,7 +358,7 @@
                 cache: false,
                 success(response){
                     alert("등록완료")
-                    location.href = "/group/result.jsp"
+                    location.href = "/group/result.do?groupNum="+response.groupNum;
                 },
                 error(response){
                     alert("등록 오류, 새로고침 후 다시 시도 해주세요")

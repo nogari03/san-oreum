@@ -57,7 +57,15 @@
 		and u.id = uf.followId
 		and u.userNum  = ui.userNum
     </select>
-    
+
+    <select id="selectRecord" resultType="map" parameterType="string">
+        select g.groupNum, g.name, TO_CHAR(g.STARTDAY,'yyyy-mm-dd') startday, g.MTNM
+        from USERWAITING uw, groups g
+        where uw.GROUPNUM = g.GROUPNUM
+          and uw.userStatus = 0
+          and g.status = 0
+          and uw.userId = #{userId}
+    </select>
 	<select id="selectFollowCnt" resultType="map" parameterType="String">
 	   select a.followingCnt, b.followerCnt
 		from 

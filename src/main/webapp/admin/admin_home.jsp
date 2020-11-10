@@ -68,7 +68,7 @@ google.charts.setOnLoadCallback( function() { drawChart() });
 				st : _st
 			},
 			success : function(data) {
-			 $('#toDaySales').text(data+"₩");
+			 $('#toDaySales').text("₩"+data);
 
 			}
 		});	

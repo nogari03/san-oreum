@@ -61,10 +61,32 @@
             </div>
         </div>
         <pre></pre>
-        <div class="p-3" style="text-align: right">
-            <input type="reset" class="btn btn-light" style="width: 75px" value="취소">
-            <input type="button" class="btn btn-info" id="submit" style="width: 75px" value="등록">
-        </div>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-title col-12">
+                    상세 조건설정
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                        <input class="toggle-btn" type="checkbox" data-toggle="toggle" data-onstyle="info" data-size="xs">
+                    </a>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="m-3 col-9">
+                            <label for="connect">산모임에 공유</label>
+                            <div class="form-inline">
+                                <input type="text" class="form-control" id="connectGroupName" placeholder="산모임 이름" readonly>
+                                <input type="text" class="form-control" id="connectGroupNum" placeholder="산모임 번호" hidden>
+                                <button id="connect" class="btn btn-info" data-toggle="modal" data-target="#connectModal">검색</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="p-3" style="text-align: right">
+                <input type="reset" class="btn btn-light" style="width: 75px" value="취소">
+                <input type="button" class="btn btn-info" id="submit" style="width: 75px" value="등록">
+            </div>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="pathModal" role="dialog">
@@ -86,7 +108,6 @@
                     </div>
                     <ul class="mountainList"></ul>
                 </div>
-
             </div>
         </div>
         <div class="modal fade" id="connectModal" role="dialog">
@@ -202,6 +223,7 @@
             data.append("area",$('#area').val() + ' ' +$('#area-detail').val());
             data.append("staffMax",1);
             data.append("userId","<%= request.getSession().getAttribute("LOGIN")%>");
+            data.append("connectGroupNum",$('#connectGroupNum').val());
 
             $.ajax({
                 type: "POST",
@@ -213,12 +235,58 @@
                 cache: false,
                 success(response){
                     alert("등록완료")
-                    location.href = "/group/result.jsp"
+                    location.href = "/group/result.do?groupNum="+response.groupNum;
                 },
                 error(response){
                     alert("등록 오류, 새로고침 후 다시 시도 해주세요")
                 }
             })
+        })
+    })
+
+    $('#connect').click(function (e){
+
+        var data = {
+            'userId' : '<%= request.getSession().getAttribute("LOGIN")%>'
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/commu/searchByUserId.do",
+            data: data,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8;",
+            success : function (response){
+                $('.connectGroupList').children().remove()
+
+                for(var i=0;i<response.length;i++){
+
+                    for(var j=0;j<response[i].length;j++){
+
+                        if(response[i][j].GROUPNUM != 0){
+                            var html = '';
+
+                            html += '<li class="row pt-2">';
+                            html += '<span style="display: none">'+response[i][j].GROUPNUM+'</span>';
+                            html += '<img src="/resources/img/'+response[i][j].STOREDFILENAME+'" style="width: 50px;height: 50px" />';
+                            html += '<div class="col-8" style="font-size: 24px">'+response[i][j].NAME+'</div>';
+                            html += '<button class="btn btn-outline-secondary col-2" onclick="selectGroup(this)">선택</button>';
+                            html += '</li>'
+
+                        }else if(response[i][j].GROUPNUM == 0){
+                            var html = '';
+
+                            html += '<li>';
+                            html += '</li>';
+                        }
+
+                        $('.connectGroupList').append(html);
+                    }
+                }
+            },
+            error : function (response){
+                console.log("error")
+            }
         })
     })
 </script>

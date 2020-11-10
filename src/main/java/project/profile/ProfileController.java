@@ -29,6 +29,7 @@ public class ProfileController {
         ModelAndView mav = new ModelAndView("detail");
 
         Map map = profileService.selectUserProfileById(userId);
+        List record = profileService.selectRecord(userId);
        
         Map<String, Object> m = new HashMap<String, Object>();
         m.put("userId", (String) httpSession.getAttribute("LOGIN"));
@@ -36,6 +37,7 @@ public class ProfileController {
         int followBoth = profileService.countFollowBoth(m);
         int followStatus = profileService.countFollowStatus(m);
         mav.addObject("userInfo",map);
+        mav.addObject("record",record);
         mav.addObject("followBoth", followBoth);
         mav.addObject("followStatus", followStatus);
 

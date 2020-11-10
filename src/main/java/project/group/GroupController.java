@@ -28,25 +28,25 @@ public class GroupController{
     @Resource(name = "chatService")
     private ChatService chatService;
 
-    @GetMapping("/group/main.do")
+    @GetMapping(value = "/group/main.do")
     public String goMain1(){
         return "main";
     }
 
-    @PostMapping(value = "/group/insert.do")
-    public ModelAndView insertGroup(@RequestParam Map map,
-                                    @RequestParam(value = "file", required = false) List<MultipartFile> files,
-                                    HttpServletRequest request) throws Exception {
-
-        ModelAndView mav = new ModelAndView("result");
+    @PostMapping(value = "/group/insert.do", produces = "application/json")
+    @ResponseBody
+    public Map insertGroup(@RequestParam Map map,
+                            @RequestParam(value = "file", required = false) List<MultipartFile> files,
+                            HttpServletRequest request) throws Exception {
         groupService.insertGroup(map);
-
         String path = request.getSession().getServletContext().getRealPath("/");
         int groupNum = (int) map.get("groupNum");
         groupMediaService.insertGroupMedia(groupNum,files,path);
 
-        mav.addObject("groupNum",groupNum);
-        return mav;
+        Map result = new HashMap();
+        result.put("groupNum",groupNum);
+
+        return result;
     }
 
     @GetMapping("/group/{groupNum}")
@@ -284,4 +284,10 @@ public class GroupController{
         }
     }
 
+    @GetMapping("/group/result.do")
+    public ModelAndView createGroupResult(@RequestParam("groupNum")String groupNum){
+        ModelAndView mav = new ModelAndView("result");
+        mav.addObject("groupNum",groupNum);
+        return mav;
+    }
 }

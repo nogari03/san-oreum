@@ -46,6 +46,11 @@ public class ProfileServiceImpl implements ProfileService{
 	public List<Map> selectFollowerList(String userId) {
 		return profileDAO.selectFollowerList(userId);
 	}
+
+	@Override
+	public List selectRecord(String userId){
+    	return profileDAO.selectRecord(userId);
+	}
 	
 	@Override
 	public Map<String, Object> selectFollowCnt(String userId) {

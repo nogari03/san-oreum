@@ -79,7 +79,7 @@
 		</div>
 		<div class="col-sm-12 col-md-6">
 			<label for="moimList">
-				<h1>인기 산모임</h1>
+				<h1>인기 산악회</h1>
 			</label>
 			<div id="moimList"></div>
 		</div>
@@ -320,6 +320,9 @@
 					var html = '';
 					html += '<li class="list-group-item"><a href="/board/'+response[i].CSPOSTNUM+'.do" class="notice-item" style="color: black">'
 					html += response[i].TITLE
+					if(response[i].NEW<5){
+						html += '<span class="badge badge-success">NEW</span>'
+					}
 					html += '</a></li>';
 
 					$('#noticeList').append(html);

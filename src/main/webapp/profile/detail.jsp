@@ -61,8 +61,19 @@ pageContext.setAttribute("loginID", request.getSession().getAttribute("LOGIN"));
 	</div>
 	<div class="row">
 		<div class="col-12 pt-3">
-			<h5 class="mt-2">${userInfo.NICKNAME}님이 작성한 글</h5>
-			<div class="">작성한 글이 없습니다</div>
+			<h5 class="mt-2">${userInfo.NICKNAME}님의 등산기록</h5>
+			<c:if test="${record eq null}">
+				<div class="">다녀온 산이 없습니다</div>
+			</c:if>
+			<c:if test="${record ne null}">
+				<c:forEach var="record" items="${record}">
+					<li style="list-style: none">
+						<a href="/group/${record.GROUPNUM}">
+							[${record.MTNM}]${record.NAME} - ${record.STARTDAY}
+						</a>
+					</li>
+				</c:forEach>
+			</c:if>
 		</div>
 		<div class="p-3 col-12 text-muted" style="text-align: right">
 			가입일 : ${fn:substring(userInfo.CREATEDAT, 0, 10)}</div>

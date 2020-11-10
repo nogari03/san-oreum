@@ -484,7 +484,7 @@
                         html += '<pre style="display: none">'+response[i].commentNum+'</pre>';
                         html += '<h5>'+response[i].nickname+'</h5>';
                         if(response[i].deleted==1){
-                            html += '<div class="text-muted">'+response[i].content +'</div>';
+                            html += '<div class="text-muted">--삭제된 댓글입니다--</div>';
                         }else{
                             html += '<div>'+response[i].content +'</div>';
                         }
@@ -514,7 +514,7 @@
                                 html += '<pre style="display: none">'+response[j].commentNum+'</pre>';
                                 html += '<h5 class="mb-0">'+response[j].nickname+'</h5>'
                                 if(response[j].deleted==1){
-                                    html += '<div class="text-muted">'+response[j].content +'</div>';
+                                    html += '<div class="text-muted">--삭제된 댓글입니다--</div>';
                                 }else{
                                     html += '<div>'+response[j].content +'</div>';
                                 }
