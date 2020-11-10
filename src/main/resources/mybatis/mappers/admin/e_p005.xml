@@ -40,7 +40,7 @@
 	<select id="sumPrice" resultType="string"
 		parameterType="java.util.Map">
 	<![CDATA[
-	select to_char(DECODE(sum(o.paytotal + o.charge),null,0,sum(o.paytotal + o.charge)),'999,999,999,999,999')as sumPrice
+	select to_char(DECODE(sum(o.paytotal),null,0,sum(o.paytotal)),'999,999,999,999,999')as sumPrice
 	FROM orders o INNER JOIN payment p
 	ON o.ordernum = p.ordernum	
 	]]>
@@ -83,7 +83,7 @@
 			<when test="key_word=='all'"> <!-- 전체 조회 -->
     			<![CDATA[
   		
-			 ( SELECT TO_CHAR(p.createdat, 'YYYY-MM-DD') AS hiredate , sum(o.paytotal+ o.charge)sumPrice												
+			 ( SELECT TO_CHAR(p.createdat, 'YYYY-MM-DD') AS hiredate , sum(o.paytotal)sumPrice												
          			FROM orders o INNER JOIN payment p 
 					 on o.ordernum=p.ordernum
 					WHERE p.createdat BETWEEN TO_DATE(( SELECT  min(to_char(createdat, 'YYYY-MM-DD')) FROM payment), 'YYYY-MM-DD')
@@ -106,7 +106,7 @@
     		<![CDATA[
  
 		 ( SELECT TO_CHAR(p.createdat, 'YYYY-MM-DD') AS hiredate
-					              , sum(o.paytotal + o.charge)sumPrice
+					              , sum(o.paytotal )sumPrice
 					           FROM orders o INNER JOIN payment p 
 					           on o.ordernum=p.ordernum
 					          WHERE p.createdat >= TO_DATE(#{startDate},'YYYY-MM-DD')
@@ -128,7 +128,7 @@
     			<![CDATA[
     			
     			  ( SELECT TO_CHAR(p.createdat, 'YYYY-MM-DD') AS hiredate
-			              , sum(o.paytotal + o.charge)sumPrice
+			              , sum(o.paytotal)sumPrice
 			           FROM orders o INNER JOIN payment p 
 			           on o.ordernum=p.ordernum
 			          WHERE p.createdat BETWEEN TO_DATE(#{endDate}, 'YYYY-MM-DD')
@@ -151,7 +151,7 @@
     			<![CDATA[
     			
     		  ( SELECT TO_CHAR(p.createdat, 'YYYY-MM-DD') AS hiredate
-			              , sum(o.paytotal + o.charge)sumPrice
+			              , sum(o.paytotal)sumPrice
 			           FROM orders o INNER JOIN payment p 
 			           on o.ordernum=p.ordernum
 			          WHERE p.createdat BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD')
@@ -214,7 +214,7 @@
    <select id="toDaySales" resultType="string" parameterType="map">
 		 <![CDATA[
 	select 
-    to_char(DECODE(sum(o.paytotal + o.charge),null,0,sum(o.paytotal + o.charge)),'999,999,999,999,999')as sumPrice
+    to_char(DECODE(sum(o.paytotal),null,0,sum(o.paytotal)),'999,999,999,999,999')as sumPrice
 	FROM orders o 
 		INNER JOIN payment p
 	ON o.ordernum = p.ordernum
@@ -228,7 +228,7 @@
 		<!--취소금액 합계 -->
 	<select id="sumCancelPay" resultType="string" parameterType="java.util.Map">
 	<![CDATA[
-	select to_char(DECODE(sum(o.paytotal + o.charge),null,0,sum(o.paytotal + o.charge)),'999,999,999,999,999')as sumCancelPay
+	select to_char(DECODE(sum(o.paytotal),null,0,sum(o.paytotal)),'999,999,999,999,999')as sumCancelPay
 	FROM orders o 
 		INNER JOIN payment p
 	ON o.ordernum = p.ordernum
@@ -261,7 +261,7 @@
 			o.ordernum,
 			o.usernum,
 			u.name,
-			to_char(sum(o.paytotal+o.charge),'999,999,999,999,999')as totalCancelPay,p.reason
+			to_char(sum(o.paytotal),'999,999,999,999,999')as totalCancelPay,p.reason
 	FROM orders o 
 		INNER JOIN payment p
 	ON o.ordernum = p.ordernum

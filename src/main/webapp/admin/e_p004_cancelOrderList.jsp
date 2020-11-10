@@ -66,8 +66,8 @@ function cancelPay() {
     	   		},
 		       success:function(data,textStatus){
 		   		if ("ok"== (data)) {
-					console.log("결제 취소 완료");
-					alert("결제 취소 완료");
+					alert("결제 취소 승인 완료");
+					 end();
 					 var queryString = $('#option').serialize();
 				       $.ajax({
 				          type : 'post',
@@ -126,13 +126,11 @@ function cancelPay() {
 						<colgroup>
 							<col style="width: 40%">
 							<col style="width: 30%">
-							<col style="width: 10%">
-							<col style="width: 20%">
+							<col style="width: 30%">
 						</colgroup>			
 						<thead>		
 							<tr>
-								<th>결제번호</th>
-								<th>주문일자</th>
+								<th>승인번호</th>
 								<th>고객이름</th>
 								<th>결제금액</th>
 								<!-- <th>배송비</th> -->
@@ -142,7 +140,6 @@ function cancelPay() {
 						<tbody>						
 							<tr>
 								<td><input type="text" class="form-control" id = "merchant_uid" value="${viewList.merchant_uid}" disabled></td>
-								<td><input type="text" class="form-control" value="${viewList.orderDatString}" disabled></td>
 								<td><input type="text" class="form-control" id ="custName" value="${viewList.custName}" disabled></td>				
 								<td><input type="text" class="form-control" value="${viewList.totalpay}" disabled></td>
 								<td><input type="hidden"  id="imp_uid"  id = "imp_uid" value="${viewList.imp_uid}"></td>
@@ -151,6 +148,10 @@ function cancelPay() {
 					</table>
 				
 					<table class="table table-boardered">
+					<tr>
+							<th>주문일자</th>
+								<td><input type="text" class="form-control"  value="${viewList.orderDatString}"></td>
+						</tr>
 						<tr>
 							<th>취소 사유</th>
 								<td><input type="text" class="form-control"  value="${viewList.preason}"></td>
