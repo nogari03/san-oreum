@@ -21,7 +21,7 @@
 		<p></p>
 		<hr >
 		<div class="row">
-			<h1 class="col-md-8 col-lg-10 mb-0">이런 산악 어때요?</h1>
+			<h1 class="col-md-8 col-lg-10 mb-0">이런 산악회 어때요?</h1>
 			<div class="col-md-4 col-lg-2 pt-2 pb-2 btn-group btn-group-toggle"
 				data-toggle="buttons">
 				<label class="btn btn-outline-secondary active"> 

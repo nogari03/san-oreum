@@ -1002,12 +1002,12 @@ $(document).on('click','.selectWaitingList',function (){
 $(document).on( 'click', 'a#oC img', function(e){ 
               console.log("this.id: "+this.id); 
          	var nickName = $(this).data('nickName').replace(/\"/g, "");
-         	var content2 = $(this).data('content2')
+         	var content2 = $(this).data('content2');
          	var createdAts = $(this).data('createdAt').replace(/\"/g, "");
          	var postNum = $(this).data('postNum').replace(/\"/g, "");
          	var userNum = $(this).data('userNum').replace(/\"/g, "");
          	var createdAt = createdAts.slice(0,19);
-         	var src = "/upload/"+content2.replace(/\"/g, "");
+         	var src = "/resources/img/"+content2.replace(/\"/g, "");
          	 var modal = document.getElementById('originalContent');
          	 var modalImg = document.getElementById('OContent');
          	document.getElementById('nickName').innerHTML=nickName;
