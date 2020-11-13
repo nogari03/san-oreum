@@ -131,6 +131,20 @@
 		<websocket:simple-broker prefix="/topic" />
 	</websocket:message-broker>
 
+	<context:property-placeholder
+		ignore-resource-not-found="true" ignore-unresolvable="true"
+		system-properties-mode="OVERRIDE" order="0"
+		location="classpath:config/config.properties" />
+	<beans:bean id="credential" class="com.amazonaws.auth.BasicAWSCredentials">
+		<beans:constructor-arg name="accessKey" value="${aws.accessKey}"/>
+		<beans:constructor-arg name="secretKey" value="${aws.secretKey}"/>
+	</beans:bean>
+	<beans:bean id="s3client" class="com.amazonaws.services.s3.AmazonS3Client">
+		<beans:constructor-arg ref="credential" />
+	</beans:bean>
+
+	<util:properties id="config" location="classpath:config/config.properties" />
+	<context:property-placeholder properties-ref="config" />
     <!-- batch -->
     <!-- 
     <task:annotation-driven executor="executor" scheduler="scheduler"/>

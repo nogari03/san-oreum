@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="/common/header.jsp" flush="false" />
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<jsp:include page="/common/header.jsp" flush="false" />
 <%
 
 	request.setCharacterEncoding("UTF-8");
@@ -31,7 +32,7 @@
 			<h1>마이페이지</h1>
 				<div class="box box-primary">
 					<div class="box-body box-profile">
-						<img class="rounded-circle mt-2" src="/resources/img/${userVO.content2}" width="100px" height="100px" alt="프로필사진">
+						<img class="rounded-circle mt-2" src="<spring:eval expression="@config[\'imgPath\']" />${userVO.content2}" width="100px" height="100px" alt="프로필사진">
 						<h4 class="mt-2" id="nickName">${userVO.nickName}</h4>
 						<p id="profile1">${userVO.profile}</p>
 						<button type="button" class="btn btn-info col-md-4 col-sm-12" id="editProf" data-toggle="modal" data-target="#exampleModalCenter">

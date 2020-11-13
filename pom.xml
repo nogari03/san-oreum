@@ -229,7 +229,7 @@
 		    <artifactId>javaSDK</artifactId>
 		    <version>2.2</version>
 		</dependency>
-		
+
 		<!-- JSON -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -401,6 +401,11 @@
 			<groupId>com.cksource</groupId>
 			<artifactId>ckfinder3</artifactId>
 			<version>3.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>1.11.66</version>
 		</dependency>
 	</dependencies>
 	

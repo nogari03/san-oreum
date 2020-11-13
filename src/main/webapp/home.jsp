@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/common/header.jsp" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/resources/css/views/home.css">
@@ -207,11 +208,11 @@
 					html += '<div class="pt-3 col-lg-4 col-sm-6" id="groupList">';
 					html += '<div class="card border-0" >';
 					html += '<a href="/group/' + response[i].GROUPNUM + '">';
-					html += '<img class="card-img-top" src="/resources/img/' + response[i].STOREDFILENAME + '" alt="..." style="width: 100%" />'
+					html += '<img class="card-img-top" src="<spring:eval expression="@config[\'imgPath\']" />' + response[i].STOREDFILENAME + '" alt="..." style="width: 100%" />'
 					html += '</a>';
 					html += '<div class="card-body row p-3 pl-4">';
 					html += '<a href="/profile/' + response[i].ID + '" onclick=\"window.open(this.href,\'\',\'width=500, height=600\'); return false;">';
-					html += '<img src="/resources/img/' + response[i].CONTENT2 + '" class="rounded-circle" style="width: 40px;height: 40px;">';
+					html += '<img src="<spring:eval expression="@config[\'imgPath\']" />' + response[i].CONTENT2 + '" class="rounded-circle" style="width: 40px;height: 40px;">';
 					html += '</a>';
 					html += '<div class="col-10 p-0 pl-2">';
 					html += '<h5 class="card-title m-0" style="display:block;overflow:hidden;white-space:nowrap;text-overflow: ellipsis">';
@@ -251,7 +252,7 @@
 
 					html += '<a href="/after/'+response[i].AFTERNUM+'.do">';
 					html += '<div class="media p-1">';
-					html += '<img src="/resources/img/'+response[i].CONTENT2+'" class="mr-3 rounded" style="width: 50px;height: 50px">';
+					html += '<img src="<spring:eval expression="@config['imgPath']" />'+response[i].CONTENT2+'" class="mr-3 rounded" style="width: 50px;height: 50px">';
 					html += '<div class="media-body">';
 					html += '<span>';
 					html += '<h4 class="m-0" style="display:block;overflow:hidden;white-space:nowrap;text-overflow: ellipsis">['+response[i].MTNM+'] '+response[i].TITLE+'</h4>';
@@ -290,7 +291,7 @@
 
 					html += '<a href="/commu/commuPageView.do?groupNum='+response[i].GROUPNUM+'">';
 					html += '<div class="media p-1">';
-					html += '<img src="/resources/img/'+response[i].STOREDFILENAME+'" class="mr-3 rounded" style="width: 50px;height: 50px">';
+					html += '<img src="<spring:eval expression="@config[\'imgPath\']" />'+response[i].STOREDFILENAME+'" class="mr-3 rounded" style="width: 50px;height: 50px">';
 					html += '<div class="media-body">';
 					html += '<span>';
 					html += '<h4 class="m-0" style="display:block;overflow:hidden;white-space:nowrap;text-overflow: ellipsis">'+response[i].NAME+'</h4>';
