@@ -149,7 +149,6 @@ public class MountainController {
     public int followMountainFunction(@RequestBody Map map){
 
         String userId = (String) map.get("userId");
-        System.out.println("userId : "+userId);
         if(userId==null){
             return 0;
         }
