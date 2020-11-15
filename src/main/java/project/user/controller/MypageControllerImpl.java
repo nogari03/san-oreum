@@ -161,7 +161,6 @@ public class MypageControllerImpl implements MypageController {
 	public String pwdCheck(@RequestParam("pwd") String pwd, HttpSession httpSession) throws Exception {
 		UserVO userVO = new UserVO();
 		String rst = "1";
-		logger.info("pwdCheck   :" + pwd);
 		userVO.setId((String) httpSession.getAttribute(LOGIN));
 		userVO = mypageService.pwdCheck(userVO);
 		if (userVO == null || !BCrypt.checkpw(pwd, userVO.getPassword())) {
