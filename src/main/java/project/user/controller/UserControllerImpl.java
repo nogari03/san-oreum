@@ -204,9 +204,7 @@ public class UserControllerImpl implements UserController {
 
 		SNSLogin snsLogin = new SNSLogin(sns);
 		Map<String, Object> snsUser = snsLogin.getUserProfile(code);
-		System.out.println("Profile>>" + snsUser);
 		UserVO snsUserInfo = userService.getBySns(snsUser);
-		System.out.println("********" + snsUserInfo);
 		if (snsUserInfo == null) { // 가입하지 않은 회원
 			httpSession.setAttribute("snsUser", snsUser);
 			return "/user/insertPwdView";
