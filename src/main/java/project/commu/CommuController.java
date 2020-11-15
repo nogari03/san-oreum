@@ -129,7 +129,6 @@ public class CommuController {
 			int i = 1;
 			for (Map m : list) {
 				String s = "m" + i;
-				//System.out.println(s + ">>>>>" + m);
 				mav.addObject(s, m);
 				i++;
 			}
