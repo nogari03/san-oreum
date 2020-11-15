@@ -281,7 +281,6 @@ public class CommuController {
 		list.add(commuService.selectCreatedCommu(userId));
 		list.add(commuService.selectJoinedCommu(userId));
 
-		System.out.println(list.toString());
 		return list;
 	}
 	@GetMapping("/checkWriter.do")
