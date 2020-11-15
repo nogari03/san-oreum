@@ -79,9 +79,6 @@ public class GroupController{
         }
 
 
-        System.out.println(map.toString());
-
-
         List recommendResult = groupService.recommendGroup(map);
 
         mav.addObject("group",map);
@@ -96,7 +93,6 @@ public class GroupController{
     @ResponseBody
     public Map joinGroup(@RequestBody Map map){
         try{
-            System.out.println("join : "+map.toString());
             Map result = new HashMap();
             groupService.joinGroup(map);
             groupService.insertAlarm(map);
@@ -113,7 +109,6 @@ public class GroupController{
     @PostMapping("/group/withdraw.do")
     @ResponseBody
     public int withdrawGroup(@RequestBody Map map){
-    	System.out.println("withdrawGroup :  " +map);
         return groupService.withdrawGroup(map);
     }
 
