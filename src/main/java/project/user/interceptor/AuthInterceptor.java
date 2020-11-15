@@ -19,7 +19,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		HttpSession httpSession = request.getSession();
 
 		if (httpSession.getAttribute(LOGIN) == null) {
-			logger.info("current user is not logged");
 			response.sendRedirect("/user/authReject.jsp");
 			return false;
 		}
