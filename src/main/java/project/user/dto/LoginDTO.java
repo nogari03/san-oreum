@@ -7,19 +7,11 @@ import lombok.ToString;
 @ToString
 public class LoginDTO {
 	
-//	private int userNum;
 	private String id;
 	private String password;
 	private String name;
 	private String nickName;
 	private int sex;
-//	private String phone;
-//	private String address;
-//	private String email;
-//	private int type;
-//	private int status;
-//	private Date createdAt;
-//	private Date updatedAt;
 	public boolean useCookie;
 
 	public String getId() {
