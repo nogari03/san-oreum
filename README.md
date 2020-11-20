@@ -8,9 +8,9 @@
 ## 목적
 누구나 쉽게 등산을 시작할 수 있기 위함
 
-## 정보
-[구글드라이브](https://drive.google.com/file/d/1WORDnb_Wjdql2k0yXXRk1_IjFdpa0Bdg/view?usp=sharing)
+## 프로젝트 정보
+[프로젝트 정보 보러가기](https://drive.google.com/file/d/1WORDnb_Wjdql2k0yXXRk1_IjFdpa0Bdg/view?usp=sharing)
 
 ## 그외
 
-[개발일지](https://drive.google.com/drive/folders/1OY1ud1EHVLkO6-mdzUa-sU5DOMa6XgSr?usp=sharing)
+[개발일지 보러가기](https://drive.google.com/drive/folders/1OY1ud1EHVLkO6-mdzUa-sU5DOMa6XgSr?usp=sharing)
