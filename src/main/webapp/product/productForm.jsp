@@ -15,18 +15,9 @@
 <script>
 var cnt=1;
 function fn_addFile(){
-	  //$("#d_file").append("<br>"+"<input type='file' name='CONTENT"+cnt+"' />");
 	  $("#d_file").append("<br>"+"<input type='file' name='content' />");
-	  //$("#d_file").append("<input type='hidden' name='PPHOTONUM' value='"+cnt+"' />"); 
-	//$("#d_file").append("<br>"+"<input type='file' name='CONTENT"+cnt+"' />");
-	  /* $("#d_file").append("<br>"+"<input multiple ='multiple' type='file' name='CONTENT1[]' />"); */
-	  /* $("#d_file").append("<br>"+"<input multiple ='multiple' type='file' name='pPhotoContent' />"); */
-	cnt++;
+	    cnt++;
 }
-
-
-
-
 </script>
 </head>
 <body>

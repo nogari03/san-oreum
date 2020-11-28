@@ -37,14 +37,19 @@ public class GroupController{
     @ResponseBody
     public Map insertGroup(@RequestParam Map map,
                             @RequestParam(value = "file", required = false) List<MultipartFile> files,
-                            HttpServletRequest request) throws Exception {
-        groupService.insertGroup(map);
-        String path = request.getSession().getServletContext().getRealPath("/");
-        int groupNum = (int) map.get("groupNum");
-        groupMediaService.insertGroupMedia(groupNum,files,path);
-
+                            HttpServletRequest request){
         Map result = new HashMap();
-        result.put("groupNum",groupNum);
+
+        try{
+            groupService.insertGroup(map);
+            String path = request.getSession().getServletContext().getRealPath("/");
+            int groupNum = (int) map.get("groupNum");
+            groupMediaService.insertGroupMedia(groupNum,files,path);
+
+            result.put("groupNum",groupNum);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         return result;
     }
