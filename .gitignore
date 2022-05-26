@@ -7,5 +7,15 @@ target
 src/main/webapp/META-INF
 .idea
 *.iml
+
+# project info
 src/main/resources/config/config.properties
 src/main/resources/config/jdbc/jdbc.properties
+src/test
+
+# build
+.mvn
+
+# etc
+.springBeans
+classpath~remotes_origin_master
